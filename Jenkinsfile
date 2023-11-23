@@ -1,21 +1,15 @@
 pipeline {
     agent any
-    tools {
-        gradle 'Gradle'
-    }
 
     stages {
-        stage('run Frontend') {
+        stage('Build') {
             steps {
-                echo 'yarn ....'
-                nodejs('NodeJS-21-2'){
-                    sh 'yarn install'
+                echo 'Building..'
             }
         }
-        stage('run Backend') {
+        stage('Test') {
             steps {
-                echo 'executing gradle....'
-                sh './gradlew -version'
+                echo 'Testing..'
             }
         }
         stage('Deploy') {
