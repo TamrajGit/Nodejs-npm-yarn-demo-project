@@ -14,10 +14,7 @@ pipeline {
             steps {
                 echo 'executing gradle......'
                 withGradle(){
-                    tasks.register("hello") {
-    doLast {
-        println("Hello world!")
-    }
+                   ./gradlew properties
 }
                 }
             }
