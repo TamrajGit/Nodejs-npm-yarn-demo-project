@@ -14,7 +14,11 @@ pipeline {
             steps {
                 echo 'executing gradle......'
                 withGradle(){
-                    bash './gradle -version'
+                    tasks.register("hello") {
+    doLast {
+        println("Hello world!")
+    }
+}
                 }
             }
         }
