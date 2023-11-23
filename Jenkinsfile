@@ -10,14 +10,15 @@ pipeline {
                 }
             }
         }
-        stage('Run backend') {
-            steps {
-                echo 'executing gradle......'
-                withGradle(){
-                   ./gradlew properties
+        stage('Gradle Version') {
+  steps {
+    // Get the gradle version
+    def gradleVersion = sh(script: './gradlew -version', returnStdout: true).trim()
+
+    // Print the gradle version
+    echo "Gradle version: $gradleVersion"
+  }
 }
-                }
-            }
         }
         stage('Deploy') {
             steps {
