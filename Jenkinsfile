@@ -1,25 +1,27 @@
 pipeline {
     agent any
+    tools {
+        gradle 'Gradle'
+    }
 
     stages {
-        stage('Run Frontend') {
+        stage('run Frontend') {
             steps {
-                echo 'executing yarn..'
+                echo 'yarn ....'
                 nodejs('NodeJS-21-2'){
                     sh 'yarn install'
-                }
             }
         }
-        stage('Gradle Version') {
-  steps {
-    // Get the gradle version
-    def gradleVersion = sh(script: './gradlew -version', returnStdout: true).trim()
-
-    // Print the gradle version
-    echo "Gradle version: $gradleVersion"
-  }
-}
+        stage('run Backend') {
+            steps {
+                echo 'executing gradle....'
+                sh './gradlew -v'
+            }
         }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying....'
+            }
+        }
+    }
 }
-        
-
